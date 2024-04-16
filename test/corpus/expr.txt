@@ -1,0 +1,81 @@
+=====================
+Identifier Expression
+=====================
+
+hello
+
+---
+
+(source_file (block (expr (ident))))
+
+=================
+Number Expression
+=================
+
+69420
+
+---
+
+(source_file (block (expr (number))))
+
+================
+Block Expression
+================
+
+{
+	let x = 5;
+	x
+}
+
+---
+
+(source_file
+  (block
+    (expr
+	  (block
+		  (stmt
+		    (let
+			  (pat
+			    (ident))
+			  (expr
+			    (number))))
+		  (expr
+		    (ident))))))
+
+=====================================
+Block Expression (Trailing Semicolon)
+=====================================
+
+{
+	let x = 5;
+	return x;
+}
+
+---
+
+(source_file
+  (block
+    (expr
+	  (block
+		  (stmt
+		    (let
+			  (pat
+			    (ident))
+			  (expr
+			    (number))))
+		  (stmt
+		    (return
+			  (expr
+			    (ident))))))))
+
+=============
+If Expression
+=============
+
+if (x >= 5) {
+	print("x is greater than 5");
+}
+
+---
+
+(source_file)
